@@ -2,17 +2,16 @@ package main
 
 import (
 	"log"
+	"microservice-technology/working/handlers"
 	"net/http"
 	"os"
-	"working/handlers"
 )
 
 func main() {
-	l := log.New(os.Stdout, "product-api", log.Flags())
+	l := log.New(os.Stdout, "product-api", log.LstdFlags)
 	hh := handlers.NewHello(l)
-
 	sm := http.NewServeMux()
-	sm.HandleFunc("/", hh)
+	sm.Handle("/", hh)
 
 	http.ListenAndServe(":9090", sm)
 }
